@@ -1,7 +1,8 @@
-[gd_scene load_steps=55 format=3 uid="uid://c7xf8jdpo3qyq"]
+[gd_scene load_steps=56 format=3 uid="uid://c7xf8jdpo3qyq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_l7g2y"]
 [ext_resource type="Texture2D" uid="uid://ddojv06u6vvf6" path="res://assets/characters/player.png" id="2_xkmha"]
+[ext_resource type="AudioStream" uid="uid://b2n24ghdhhwkm" path="res://assets/audio/sword whoosh.wav" id="3_x8hha"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_unfka"]
 atlas = ExtResource("2_xkmha")
@@ -222,7 +223,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_704hx")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_down",
 "speed": 10.0
 }, {
@@ -239,7 +240,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_woa12")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_right",
 "speed": 10.0
 }, {
@@ -256,7 +257,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_83dq7")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_up",
 "speed": 10.0
 }, {
@@ -420,5 +421,9 @@ script = ExtResource("1_l7g2y")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1gu8s")
 animation = &"attack_down"
-frame = 2
-frame_progress = 0.963482
+
+[node name="SwingSword" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_x8hha")
+pitch_scale = 3.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
